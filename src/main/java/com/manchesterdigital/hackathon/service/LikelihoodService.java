@@ -1,5 +1,6 @@
 package com.manchesterdigital.hackathon.service;
 
+import com.manchesterdigital.hackathon.domain.GridReference;
 import com.manchesterdigital.hackathon.domain.ParkingData;
 import com.manchesterdigital.hackathon.repository.CSVDocumentService;
 import com.manchesterdigital.hackathon.repository.LatLongToGridReferenceService;
@@ -13,6 +14,8 @@ public class LikelihoodService {
     CSVDocumentService csvDocumentService;
     LatLongToGridReferenceService latLongToGridReferenceService;
 
+    double likelihoodOfTicket;
+
     public LikelihoodService(CSVDocumentService csvDocumentService, LatLongToGridReferenceService latLongToGridReferenceService) {
         this.csvDocumentService = csvDocumentService;
         this.latLongToGridReferenceService = latLongToGridReferenceService;
@@ -22,10 +25,16 @@ public class LikelihoodService {
 
         List<ParkingData> parkingData = csvDocumentService.getCarParkData();
 
-        latLongToGridReferenceService.getGridreferenceForLatLong(latitude, longitude);
+        GridReference gridReference = latLongToGridReferenceService.getGridreferenceForLatLong(latitude, longitude);
 
+        for (ParkingData value: parkingData ) {
 
-        return latitude + longitude + 0.5;
+            if(value.getGridRef().equals(gridReference.getGridRef())){
+                return (Double.parseDouble(value.getAvgNumberOfTicketsPerDay())/
+                        Double.parseDouble(value.getNumberOfTicketsIssued()))*100;
+            }
+        }
+            return 0.0;
     }
 
 }

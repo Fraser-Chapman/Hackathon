@@ -17,16 +17,16 @@ public class LatLongToGridReferenceService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public void getGridreferenceForLatLong(double latitude, double longitude) {
+    public GridReference getGridreferenceForLatLong(double latitude, double longitude) {
         URI uri = buildUri(latitude, longitude);
 
         try {
             HttpEntity<GridReference> response = restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<>(new HttpHeaders()), GridReference.class);
-            GridReference responseBody = response.getBody();
+            return response.getBody();
         }catch (Exception e) {
 
         }
-
+        return null;
     }
 
     //TODO add real URL
