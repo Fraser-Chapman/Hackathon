@@ -16,7 +16,7 @@ export class LikelihoodService {
 
   sendLatLong(model: LatLong) : any {
     return this.http.get((this.apiEndpoint + '?lat=' + model.lat.toString() + '&long=' + model.long.toString()))
-    .pipe(map((response: likelihoodIndicator) => response.likelihood === 'OK'), catchError(this.handleError));
+    .pipe(map((response: likelihoodIndicator) => response), catchError(this.handleError));
   }
 
   private handleError(response: HttpErrorResponse) {

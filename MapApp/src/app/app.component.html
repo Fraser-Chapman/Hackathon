@@ -5,7 +5,7 @@
   </h1>
 </div>
 
-<agm-map 
+<agm-map
   [latitude]="lat"
   [longitude]="lng"
   [zoom]="zoom"
@@ -28,3 +28,8 @@
     
   </agm-marker>
 </agm-map>
+
+<div id="app.component" class="likelihoodIndicator">
+  <h1>  On average {{ likeLihoodIndicator.likelihood }} </h1>
+  <h1>cars are given a parking ticket here each day </h1>
+</div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MouseEvent } from '@agm/core';
 import { LikelihoodService } from './LikelihoodService';
 import { LatLong } from './Models/coordinates';
-import { Marker } from '@agm/core/services/google-maps-types';
 import { likelihoodIndicator } from './Models/likelihoodIndicator';
 
 @Component({
@@ -14,6 +13,7 @@ export class AppComponent {
   
   private latLong : LatLong;
   private marker: marker;
+  likeLihoodIndicator: likelihoodIndicator;
 
   constructor(private likelihoodService: LikelihoodService) { }
  
@@ -28,7 +28,7 @@ export class AppComponent {
      console.log(`clicked the marker: ${label || index}`)     
    }
    
-   mapClicked($event: MouseEvent) : likelihoodIndicator {
+   mapClicked($event: MouseEvent) {
     
     this.marker = {
        lat: $event.coords.lat,
@@ -45,7 +45,14 @@ export class AppComponent {
     }
     console.log('request sending');
 
-    return this.likelihoodService.sendLatLong(this.latLong);
+    this.likeLihoodIndicator == this.likelihoodService.sendLatLong(this.latLong);
+    this.likeLihoodIndicator ={
+      likelihood: 5
+    }
+   }
+
+   returnLikihood(likelihood: likelihoodIndicator) {
+    
    }
    
    markerDragEnd(m: marker, $event: MouseEvent) {
