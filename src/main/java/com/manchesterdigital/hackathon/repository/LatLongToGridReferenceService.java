@@ -55,5 +55,4 @@ public class LatLongToGridReferenceService {
 
         return params;
     }
-
 }
