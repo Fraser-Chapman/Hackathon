@@ -9,9 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 
 import java.util.Arrays;
@@ -46,7 +44,7 @@ public class LikelihoodServiceTest {
 
         when(csvDocumentService.getCarParkData())
                 .thenReturn(Arrays.asList(parkingData));
-        when(latLongToGridReferenceService.getGridreferenceForLatLong(1.0, 2.0)).thenReturn(gridReference);
+        when(latLongToGridReferenceService.getGridReferenceForLatLong(1.0, 2.0)).thenReturn(gridReference);
 
         Assertions.assertThat(testSubject.getLikelihood(1.0, 2.0)).isEqualTo(10.0);
     }

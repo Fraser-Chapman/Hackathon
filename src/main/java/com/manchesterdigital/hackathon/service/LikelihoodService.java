@@ -25,7 +25,7 @@ public class LikelihoodService {
 
         List<ParkingData> parkingData = csvDocumentService.getCarParkData();
 
-        GridReference gridReference = latLongToGridReferenceService.getGridreferenceForLatLong(latitude, longitude);
+        GridReference gridReference = latLongToGridReferenceService.getGridReferenceForLatLong(latitude, longitude);
 
         for (ParkingData value: parkingData ) {
 

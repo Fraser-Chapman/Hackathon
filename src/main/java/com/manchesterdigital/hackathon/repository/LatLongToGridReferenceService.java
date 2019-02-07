@@ -1,6 +1,7 @@
 package com.manchesterdigital.hackathon.repository;
 
 import com.manchesterdigital.hackathon.domain.GridReference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,23 +16,32 @@ import java.net.URI;
 @Repository
 public class LatLongToGridReferenceService {
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplate;
 
-    public GridReference getGridreferenceForLatLong(double latitude, double longitude) {
+    @Autowired
+    public LatLongToGridReferenceService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    public GridReference getGridReferenceForLatLong(double latitude, double longitude) {
         URI uri = buildUri(latitude, longitude);
 
         try {
-            HttpEntity<GridReference> response = restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<>(new HttpHeaders()), GridReference.class);
+            HttpEntity<GridReference> response = restTemplate.exchange(uri,
+                    HttpMethod.GET,
+                    new HttpEntity<>(new HttpHeaders()),
+                    GridReference.class);
+
             return response.getBody();
+
         }catch (Exception e) {
 
         }
         return null;
     }
 
-    //TODO add real URL
     private URI buildUri(double latitude, double longitude) {
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString("http://localhost:8080/api/pythonystuff");
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString("http://localhost:5000");
 
         uriComponentsBuilder.queryParams(getQueryParams(latitude, longitude));
 
