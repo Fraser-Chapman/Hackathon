@@ -4,6 +4,7 @@ import com.manchesterdigital.hackathon.domain.GridReference;
 import com.manchesterdigital.hackathon.domain.ParkingData;
 import com.manchesterdigital.hackathon.repository.CSVDocumentService;
 import com.manchesterdigital.hackathon.repository.LatLongToGridReferenceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +15,7 @@ public class LikelihoodService {
     CSVDocumentService csvDocumentService;
     LatLongToGridReferenceService latLongToGridReferenceService;
 
-    double likelihoodOfTicket;
-
+    @Autowired
     public LikelihoodService(CSVDocumentService csvDocumentService, LatLongToGridReferenceService latLongToGridReferenceService) {
         this.csvDocumentService = csvDocumentService;
         this.latLongToGridReferenceService = latLongToGridReferenceService;
@@ -25,7 +25,7 @@ public class LikelihoodService {
 
         List<ParkingData> parkingData = csvDocumentService.getCarParkData();
 
-        GridReference gridReference = latLongToGridReferenceService.getGridreferenceForLatLong(latitude, longitude);
+        GridReference gridReference = latLongToGridReferenceService.getGridReferenceForLatLong(latitude, longitude);
 
         for (ParkingData value: parkingData ) {
 
