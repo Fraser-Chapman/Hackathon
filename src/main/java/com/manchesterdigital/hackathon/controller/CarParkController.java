@@ -17,11 +17,10 @@ public class CarParkController {
     }
 
     //api/getLikelihood?lat=53.3&long=-2.3
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:5000"})
     @RequestMapping(value = "/getlikelihood", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public double getLikelihood(@RequestParam(value = "lat") double latitude, @RequestParam(value = "long") double longitude) {
-        System.out.println("hi");
         return likelihoodService.getLikelihood(latitude, longitude);
     }
 }
