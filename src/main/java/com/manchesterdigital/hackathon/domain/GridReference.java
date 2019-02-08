@@ -2,7 +2,7 @@ package com.manchesterdigital.hackathon.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class gridReference {
+public class GridReference {
 
     @JsonProperty("gridRef")
     public String getGridRef() {

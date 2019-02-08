@@ -1,6 +1,6 @@
 package com.manchesterdigital.hackathon.service;
 
-import com.manchesterdigital.hackathon.domain.gridReference;
+import com.manchesterdigital.hackathon.domain.GridReference;
 import com.manchesterdigital.hackathon.domain.ParkingData;
 import com.manchesterdigital.hackathon.repository.CSVDocumentService;
 import com.manchesterdigital.hackathon.repository.LatLongToGridReferenceService;
@@ -25,7 +25,7 @@ public class LikelihoodService {
 
         List<ParkingData> parkingData = csvDocumentService.getCarParkData();
 
-        gridReference gridReference = latLongToGridReferenceService.getGridReferenceForLatLong(latitude, longitude);
+        GridReference gridReference = latLongToGridReferenceService.getGridReferenceForLatLong(latitude, longitude);
 
         for (ParkingData value: parkingData ) {
 

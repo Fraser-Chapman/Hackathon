@@ -1,6 +1,6 @@
 package com.manchesterdigital.hackathon.repository;
 
-import com.manchesterdigital.hackathon.domain.gridReference;
+import com.manchesterdigital.hackathon.domain.GridReference;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,16 +42,16 @@ public class LatLongToGridReferenceServiceTest {
         verify(restTemplate).exchange(eq(uri),
                 eq(HttpMethod.GET),
                 any(HttpEntity.class),
-                eq(gridReference.class));
+                eq(GridReference.class));
     }
 
     @Test
     public void shouldMapResponseToObjectCorrectly() {
-        gridReference gridReference = new gridReference();
+        GridReference gridReference = new GridReference();
         gridReference.setGridRef("GridRef");
-        ResponseEntity<com.manchesterdigital.hackathon.domain.gridReference> responseEntity = new ResponseEntity<>(gridReference, HttpStatus.OK);
+        ResponseEntity<GridReference> responseEntity = new ResponseEntity<>(gridReference, HttpStatus.OK);
 
-        when(restTemplate.exchange(any(), any(), any(), eq(com.manchesterdigital.hackathon.domain.gridReference.class))).thenReturn(responseEntity);
+        when(restTemplate.exchange(any(), any(), any(), eq(GridReference.class))).thenReturn(responseEntity);
 
         Assertions.assertThat(testSubject.getGridReferenceForLatLong(1.0, 2.0).getGridRef()).isEqualTo("GridRef");
     }

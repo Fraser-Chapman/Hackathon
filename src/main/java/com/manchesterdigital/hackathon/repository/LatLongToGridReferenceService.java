@@ -1,6 +1,6 @@
 package com.manchesterdigital.hackathon.repository;
 
-import com.manchesterdigital.hackathon.domain.gridReference;
+import com.manchesterdigital.hackathon.domain.GridReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,14 +23,14 @@ public class LatLongToGridReferenceService {
         this.restTemplate = restTemplate;
     }
 
-    public gridReference getGridReferenceForLatLong(double latitude, double longitude) {
+    public GridReference getGridReferenceForLatLong(double latitude, double longitude) {
         URI uri = buildUri(latitude, longitude);
 
         try {
-            HttpEntity<gridReference> response = restTemplate.exchange(uri,
+            HttpEntity<GridReference> response = restTemplate.exchange(uri,
                     HttpMethod.GET,
                     new HttpEntity<>(new HttpHeaders()),
-                    gridReference.class);
+                    GridReference.class);
 
             return response.getBody();
 
