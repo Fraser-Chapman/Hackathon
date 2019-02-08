@@ -20,7 +20,6 @@ public class CarParkController {
     @RequestMapping(value = "/getlikelihood", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public double getLikelihood(@RequestParam(value = "lat") double latitude, @RequestParam(value = "long") double longitude) {
-        System.out.println("hi");
         return likelihoodService.getLikelihood(latitude, longitude);
     }
 }
