@@ -4,7 +4,6 @@ from flask import (
     request,
     Response)
 
-import requests
 from OSGridConverter import latlong2grid
 
 
