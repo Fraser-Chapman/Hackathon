@@ -35,14 +35,14 @@ export class AppComponent {
        lng: $event.coords.lng,
        label: 'Location',
        draggable: false 
-    }
+    };
 
     this.markers.push(this.marker);
     
     this.latLong = {
       lat: this.marker.lat,
       long: this.marker.lng
-    }
+    };
     console.log('request sending');
 
     this.likelihoodService.sendLatLong(this.latLong).subscribe(response =>
@@ -52,7 +52,7 @@ export class AppComponent {
         this.likeLihoodIndicator.likelihood = response;
       });
     
-   }
+   };
 
    returnLikihood(likelihood: likelihoodIndicator) {
     

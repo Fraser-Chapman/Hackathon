@@ -178,10 +178,10 @@ function gridrefNumToLet(e, n, digits) {
  */
 Number.prototype.toRad = function () {  // convert degrees to radians
     return this * Math.PI / 180;
-}
+};
 Number.prototype.toDeg = function () {  // convert radians to degrees (signed)
     return this * 180 / Math.PI;
-}
+};
 
 /*
  * pad a number with sufficient leading zeros to make it w chars wide
@@ -190,4 +190,4 @@ Number.prototype.padLZ = function (w) {
     var n = this.toString();
     for (var i = 0; i < w - n.length; i++) n = '0' + n;
     return n;
-}
+};
