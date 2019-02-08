@@ -13,7 +13,7 @@ export class AppComponent {
   
   private latLong : LatLong;
   private marker: marker;
-  likeLihoodIndicator: likelihoodIndicator;
+  likeLihoodIndicator: likelihoodIndicator = {likelihood: null};
 
   constructor(private likelihoodService: LikelihoodService) { }
  
@@ -45,10 +45,13 @@ export class AppComponent {
     }
     console.log('request sending');
 
-    this.likeLihoodIndicator == this.likelihoodService.sendLatLong(this.latLong);
-    this.likeLihoodIndicator ={
-      likelihood: 5
-    }
+    this.likelihoodService.sendLatLong(this.latLong).subscribe(response =>
+      {
+        console.log("got response: ");
+        console.log(response);
+        this.likeLihoodIndicator.likelihood = response;
+      });
+    
    }
 
    returnLikihood(likelihood: likelihoodIndicator) {

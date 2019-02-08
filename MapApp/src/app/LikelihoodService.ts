@@ -15,8 +15,15 @@ export class LikelihoodService {
   constructor(private http: HttpClient) { }
 
   sendLatLong(model: LatLong) : any {
-    return this.http.get((this.apiEndpoint + '?lat=' + model.lat.toString() + '&long=' + model.long.toString()))
-    .pipe(map((response: likelihoodIndicator) => response), catchError(this.handleError));
+    console.log("request part 2");
+
+const url = this.apiEndpoint + '?lat=' + model.lat.toString() + '&long=' + model.long.toString();
+
+    console.log(url);
+    return this.http.get(url)
+    .pipe(map((response: any) => {
+      console.log(response);
+      return response}), catchError(this.handleError));
   }
 
   private handleError(response: HttpErrorResponse) {

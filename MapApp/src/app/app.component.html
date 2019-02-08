@@ -12,7 +12,7 @@
   [disableDefaultUI]="false"
   [zoomControl]="false"
   (mapClick)="mapClicked($event)">
-
+  
   <agm-marker 
       *ngFor="let m of markers; let i = index"
       (markerClick)="clickedMarker(m.label, i)"
