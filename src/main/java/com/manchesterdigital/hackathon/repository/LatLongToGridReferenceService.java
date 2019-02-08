@@ -35,7 +35,7 @@ public class LatLongToGridReferenceService {
             return response.getBody();
 
         }catch (Exception e) {
-
+            System.out.println(e.getStackTrace());
         }
         return null;
     }
