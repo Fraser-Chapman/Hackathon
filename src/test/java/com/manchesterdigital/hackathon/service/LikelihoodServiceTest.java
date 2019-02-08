@@ -1,6 +1,6 @@
 package com.manchesterdigital.hackathon.service;
 
-import com.manchesterdigital.hackathon.domain.GridReference;
+import com.manchesterdigital.hackathon.domain.gridReference;
 import com.manchesterdigital.hackathon.domain.ParkingData;
 import com.manchesterdigital.hackathon.repository.CSVDocumentService;
 import com.manchesterdigital.hackathon.repository.LatLongToGridReferenceService;
@@ -39,7 +39,7 @@ public class LikelihoodServiceTest {
         parkingData.setAvgNumberOfTicketsPerDay("100");
         parkingData.setNumberOfTicketsIssued("1000");
 
-        GridReference gridReference = new GridReference();
+        gridReference gridReference = new gridReference();
         gridReference.setGridRef("SD319361");
 
         when(csvDocumentService.getCarParkData())
