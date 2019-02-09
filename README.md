@@ -3,7 +3,7 @@
 # Hackathon
 Repository for the Manchester Digital government open data hackathon.
 
-#How to use
+# How to use
 
 The front end client is located inside of the "MapApp" folder in the project. The client
 uses the Angular framework and so can be ran by using the Angular cli command
