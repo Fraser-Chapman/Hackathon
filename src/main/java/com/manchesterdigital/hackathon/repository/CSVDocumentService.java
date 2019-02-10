@@ -20,24 +20,9 @@ public class CSVDocumentService {
                     .build()
                     .parse();
 
-        }catch (FileNotFoundException filenotFound) {
-            System.out.println(filenotFound);
+        }catch (FileNotFoundException fileNotFound) {
+            System.out.println(fileNotFound);
             return Collections.emptyList();
         }
-
     }
-
-    public void getRequestedGridReferences() {
-
-        try {
-            new CsvToBeanBuilder(new FileReader("src/main/resources/GridReferencesData.csv"))
-                    .withType(ParkingData.class)
-                    .build()
-                    .parse();
-
-        } catch (FileNotFoundException filenotFound) {
-            System.out.println(filenotFound);
-        }
-    }
-
 }
