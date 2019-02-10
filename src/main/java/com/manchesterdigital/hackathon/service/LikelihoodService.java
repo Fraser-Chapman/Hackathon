@@ -2,11 +2,14 @@ package com.manchesterdigital.hackathon.service;
 
 import com.manchesterdigital.hackathon.domain.GridReference;
 import com.manchesterdigital.hackathon.domain.ParkingData;
+import com.manchesterdigital.hackathon.exceptions.GridReferenceLookupException;
+import com.manchesterdigital.hackathon.exceptions.WebApplicationException;
 import com.manchesterdigital.hackathon.repository.CSVDocumentService;
 import com.manchesterdigital.hackathon.repository.LatLongToGridReferenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 @Service
@@ -27,14 +30,27 @@ public class LikelihoodService {
 
         GridReference gridReference = latLongToGridReferenceService.getGridReferenceForLatLong(latitude, longitude);
 
-        for (ParkingData value: parkingData ) {
+        try {
+            for (ParkingData value: parkingData ) {
 
-            if(value.getGridRef().equals(gridReference.getGridRef())){
-                return (Double.parseDouble(value.getAvgNumberOfTicketsPerDay())/
-                        Double.parseDouble(value.getNumberOfTicketsIssued()))*100;
+                if(value.getGridRef().equals(gridReference.getGridRef())){
+                    return toTwoDecimalPlaces((Double.parseDouble(value.getAvgNumberOfTicketsPerDay())/
+                            Double.parseDouble(value.getNumberOfTicketsIssued()))*100);
+                }
+
             }
+
+            throw new GridReferenceLookupException("Could not find corresponding grid reference for location");
+
+        } catch (GridReferenceLookupException gridRefException) {
+            throw new WebApplicationException(400, gridRefException.getMessage());
         }
-            return 0.0;
+
+    }
+
+    private double toTwoDecimalPlaces(double value) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return Double.valueOf(decimalFormat.format(value));
     }
 
 }

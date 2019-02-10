@@ -49,4 +49,21 @@ public class LikelihoodServiceTest {
         Assertions.assertThat(testSubject.getLikelihood(1.0, 2.0)).isEqualTo(10.0);
     }
 
+    @Test
+    public void toTwoDecimalPlacesShouldRoundProperly() {
+        ParkingData parkingData = new ParkingData();
+        parkingData.setGridRef("SD319361");
+        parkingData.setAvgNumberOfTicketsPerDay("13");
+        parkingData.setNumberOfTicketsIssued("2334");
+
+        GridReference gridReference = new GridReference();
+        gridReference.setGridRef("SD319361");
+
+        when(csvDocumentService.getCarParkData())
+                .thenReturn(Arrays.asList(parkingData));
+        when(latLongToGridReferenceService.getGridReferenceForLatLong(1.0, 2.0)).thenReturn(gridReference);
+
+        Assertions.assertThat(testSubject.getLikelihood(1.0, 2.0)).isEqualTo(0.56);
+    }
+
 }
