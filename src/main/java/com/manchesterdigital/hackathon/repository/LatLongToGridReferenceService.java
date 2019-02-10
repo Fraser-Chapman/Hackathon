@@ -1,6 +1,7 @@
 package com.manchesterdigital.hackathon.repository;
 
 import com.manchesterdigital.hackathon.domain.GridReference;
+import com.manchesterdigital.hackathon.exceptions.WebApplicationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -34,10 +36,9 @@ public class LatLongToGridReferenceService {
 
             return response.getBody();
 
-        }catch (Exception e) {
-            System.out.println(e.getStackTrace());
+        }catch (HttpClientErrorException clientError) {
+            throw new WebApplicationException(clientError.getRawStatusCode(), "Invalid response from rest service");
         }
-        return null;
     }
 
     private URI buildUri(double latitude, double longitude) {
