@@ -1,0 +1,23 @@
+Hack Day, 7th Feb 2019:
+Open Data Challenge
+
+ 
+Context
+
+A key part of a software engineers’ role is to process data into information, to turn data points into a format that businesses can use to make informed decisions on future strategy and where to focus their efforts. In 2010 the UK Government set up a website to help people find data published into the public domain. In 2018 they introduced the “Find open data” service to make it easier to find data published by central government, local authorities and public bodies, and provided links to download the data. 
+
+The Challenge
+
+Using data from the UK’s Open Data Initiative (https://data.gov.uk/), process a datafile of your choice to create an answer to a question that you devise. 
+ 
+Guidance for Attendees
+●	Review the types of data available on https://data.gov.uk/
+●	Think about the answers that you can create for the data that would be interesting (or fun) to you, your community, or your employer
+
+What's Next?
+You will be sent information on your teams and team mentors next week - and given time to meet and communicate to come up with a final plan of action to undertake on the Hack Day.
+ 
+Due to the limited time available for the Hack, you will be expected to have a plan ready to put into action on the day!
+ 
+Resources
+The Open Data Site: https://data.gov.uk/
